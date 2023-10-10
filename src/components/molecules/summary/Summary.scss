@@ -1,0 +1,19 @@
+@import "../../../sass/variables";
+
+.summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & h3, li {
+    color: $black;
+    font-size: 2rem;
+    font-weight: $font-weight-bold;
+  }
+
+  & h3 {
+    margin-top: 7.4rem;
+    margin-bottom: 5rem;
+  }
+}

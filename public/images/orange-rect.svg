@@ -1,0 +1,16 @@
+<svg width="123" height="47" viewBox="0 0 123 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Clip path group">
+<mask id="mask0_1_36" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="123" height="47">
+<g id="clip-path">
+<path id="Vector" d="M123 0H0V47H123V0Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask0_1_36)">
+<g id="Repeat Grid 1">
+<g id="Group">
+<path id="Rectangle 7" d="M123 0H0V47H123V0Z" fill="#FF7700"/>
+</g>
+</g>
+</g>
+</g>
+</svg>

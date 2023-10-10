@@ -1,0 +1,69 @@
+@import "../../../sass/variables";
+
+.section__const {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $athens-gray;
+  width: 76%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.const {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 10%;
+  margin-bottom: 8%;
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    font-size: 7rem;
+    font-weight: $font-weight-regular;
+    color: $prussian-blue;
+
+    .const__img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &:is(:not(:last-child)) {
+        &::after {
+          content: ",";
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          color: $prussian-blue;
+          font-size: 7rem;
+        }
+      }
+
+      &:nth-child(4) {
+        &::after {
+          content: ",";
+          position: absolute;
+          bottom: 0;
+          right: -1rem;
+        }
+      }
+
+      & img {
+        width: 6rem;
+      }
+    }
+  }
+
+  &__equal {
+    font-size: 7rem;
+    font-weight: $font-weight-regular;
+    color: $prussian-blue;
+  }
+}

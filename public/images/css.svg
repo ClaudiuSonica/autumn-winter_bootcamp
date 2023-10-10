@@ -1,0 +1,26 @@
+<svg width="120" height="98" viewBox="0 0 120 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Clip path group">
+<mask id="mask0_1_74" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="98">
+<g id="clip-path-2">
+<path id="Rectangle 15" d="M119.5 0.5H0.5V97.5H119.5V0.5Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask0_1_74)">
+<g id="Mask Group 3">
+<g id="layer1">
+<g id="g3013">
+<path id="polygon2989" d="M96.525 19.744L90.01 89.716L60.725 97.5L31.525 89.727L25.013 19.744H96.525Z" fill="black"/>
+<path id="polygon2991" d="M84.432 85.26L89.999 25.466H60.769V91.55L84.432 85.26Z" fill="black"/>
+<path id="polygon2993" d="M39.933 51.422L40.733 60.005H60.769V51.422H39.933Z" fill="#EBEBEB"/>
+<path id="polygon2995" d="M60.769 34.05H38.32L39.134 42.633H60.769V34.05Z" fill="#EBEBEB"/>
+<path id="polygon2997" d="M60.769 82.643V73.713L60.73 73.723L50.76 71.142L50.119 64.294H41.135L42.389 77.771L60.728 82.652L60.769 82.643Z" fill="#EBEBEB"/>
+<path id="path2999" d="M41.843 0.725998H52.686V5.073H46.377V9.42H52.686V13.767H41.843V0.725998Z" fill="black"/>
+<path id="path3001" d="M54.855 0.725998H65.698V4.506H59.389V5.262H65.698V13.956H54.855V9.988H61.164V9.231H54.855V0.725998Z" fill="black"/>
+<path id="path3003" d="M67.866 0.725998H78.709V4.506H72.401V5.262H78.71V13.956H67.866V9.988H74.175V9.231H67.866V0.725998Z" fill="black"/>
+<path id="polygon3005" d="M71.762 60.005L70.723 71.137L60.738 73.721V82.651L79.091 77.774L79.226 76.324L81.326 53.724L81.544 51.424L83.16 34.052H60.738V42.635H73.353L72.538 51.424H60.738V60.007L71.762 60.005Z" fill="white"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

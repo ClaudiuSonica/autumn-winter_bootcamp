@@ -1,0 +1,40 @@
+@import "../../../sass/variables";
+
+.page__example {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $white;
+  padding: 1.9rem 1.6rem;
+  gap: 1.6rem;
+
+  .row-first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+
+    .blue-rect-small {
+      background-color: $prussian-blue;
+      width: 26.2rem;
+      height: 4.7rem;
+    }
+  }
+
+  .row-second {
+    .blue-rect-big {
+      background-color: $prussian-blue;
+      width: 40rem;
+      height: 11.7rem;
+      display: inline-block;
+    }
+  }
+
+  .row-third {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+  }
+}

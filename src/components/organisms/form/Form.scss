@@ -1,0 +1,132 @@
+@import "../../../sass/variables";
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 76%;
+  margin: 0 auto;
+  background: $athens-gray;
+
+  label {
+    font-family: $font-family-base;
+    font-size: 1.6rem;
+    font-weight: $font-weight-bold;
+    color: $prussian-blue;
+  }
+
+  input {
+    border: 1px solid $prussian-blue;
+    width: 100%;
+    height: 2.4rem;
+    text-indent: .8rem;
+    font-size: 1.6rem;
+    font-weight: $font-weight-regular;
+    color: $prussian-blue;
+    box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    &::placeholder {
+      color: #E2E2E2;
+      font-size: 1.2rem;
+      font-weight: $font-weight-regular;
+      text-indent: .8rem;
+      letter-spacing: .1rem;
+    }
+  }
+
+  span {
+    color: red;
+  }
+
+  .form__title {
+    text-align: center;
+    margin-top: 7.7rem;
+    margin-bottom: 6.3rem;
+    font-size: 2.8rem;
+    font-weight: $font-weight-bold;
+    color: $prussian-blue;
+  }
+
+  & .form__contact {
+    input {
+      width: 39.4rem;
+    }
+
+    & .form__subtitle {
+      font-size: 2rem;
+      font-weight: $font-weight-bold;
+      color: $prussian-blue;
+      margin-bottom: 1.8rem;
+    }
+
+    & .col {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 2.8rem;
+    }
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  & .form__address {
+    input {
+      width: 81.6rem;
+    }
+
+    & .row__location {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      // gap: 7.2rem;
+
+      & .row:is(:last-child) {
+        margin-left: 4.5rem;
+      }
+
+      & .row:is(:first-child) {
+        margin-right: 7.2rem;
+      }
+    
+      
+      input {
+        width: 23.3rem;
+      }
+    }
+
+    & .form__subtitle {
+      font-size: 2rem;
+      font-weight: $font-weight-bold;
+      color: $prussian-blue;
+      margin-bottom: 1.8rem;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 1.9rem;
+    gap: 1.8rem;
+  }
+
+  & .form__btn {
+    margin-top: 8.2rem;
+    margin-bottom: 16.7rem;
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
+}

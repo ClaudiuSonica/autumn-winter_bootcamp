@@ -1,0 +1,10 @@
+@import "../../../sass/variables";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 11.5rem;
+  background: $prussian-blue;
+  padding: 0 3.6rem;
+}

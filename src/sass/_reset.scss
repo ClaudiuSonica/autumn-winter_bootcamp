@@ -9,6 +9,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: $font-family-base;
+}
+
 button {
   border: none;
   outline: none;

@@ -1,0 +1,19 @@
+@import "../../../sass/variables";
+
+.button {
+  background-color: $school-bus-yellow;
+  color: $black;
+  font-size: 1.6rem;
+  font-weight: $font-weight-regular;
+  padding: 1.2rem 9.4rem;
+  border: 1px solid $school-bus-yellow;
+  border-radius: 3rem;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid $school-bus-yellow;
+    color: $school-bus-yellow;
+    transition: all 0.5s ease-in-out;
+  }
+}

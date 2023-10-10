@@ -1,2 +1,19 @@
 @import "../../../sass/variables";
 
+.footer {
+  background: $dove-gray;
+  height: 11.5rem;
+  color: $white;
+  font-size: 3.6rem;
+  font-weight: $font-weight-regular;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}

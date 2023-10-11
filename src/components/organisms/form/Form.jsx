@@ -29,9 +29,11 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
     city: true,
   });
 
+  const navigate = useNavigate();
+
   const [formErrors, setFormErrors] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
+  const [states, setStates] = useState([]);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -45,7 +47,6 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
         const data = await response.json();
         if (data && data.data && Array.isArray(data.data)) {
           setCountries(data.data.map((country) => country.country));
-          console.log(data.data);
         } else {
           console.error("Invalid API response format:", data);
         }
@@ -56,7 +57,7 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
     fetchCountries();
   }, []);
 
-  const fetchCities = async (selectedCountry) => {
+  const fetchStatesForCountry = async (selectedCountry) => {
     try {
       const requestOptions = {
         method: "POST",
@@ -66,7 +67,7 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
         },
       };
       const response = await fetch(
-        "https://countriesnow.space/api/v0.1/countries/cities",
+        "https://countriesnow.space/api/v0.1/countries/states",
         requestOptions
       );
       if (!response.ok) {
@@ -74,21 +75,28 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
       }
       const data = await response.json();
 
-      if (data && Array.isArray(data.data)) {
-        setCities(data.data);
+      if (data && data.data && Array.isArray(data.data.states)) {
+        setStates(data.data.states);
       } else {
-        console.log("Invalid API response format for cities:", data);
+        console.log("Invalid API response format for states:", data);
       }
     } catch (error) {
-      console.error("Error fetching cities:", error);
+      console.error("Error fetching states:", error);
     }
   };
 
   const handleCountryChange = (selectedCountry) => {
-    fetchCities(selectedCountry);
-  };
+    handleChange({
+      target: { name: "country", value: selectedCountry },
+    });
 
-  const navigate = useNavigate();
+    handleChange({
+      target: { name: "state", value: "" },
+    });
+
+    // Fetch and update states based on the selected country
+    fetchStatesForCountry(selectedCountry);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -262,35 +270,38 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
               </select>
             </div>
             <div className="row">
-              <label htmlFor="state">State</label>
-              <input
-                value={state}
+              <label htmlFor="city">State</label>
+              <select
+                value={city}
                 onChange={handleChange}
                 type="text"
-                id="state"
-                name="state"
-                placeholder="State"
-              />
+                id="city"
+                name="city">
+                <option value="">Select State</option>
+                <option value="">No State Found</option>
+              </select>
             </div>
             <div className="row">
-              <label htmlFor="city">
+              <label htmlFor="state">
                 City<span>*</span>
               </label>
               <select
-                value={city}
-                onChange={(e) => handleChange(e)}
+                value={state}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
                 type="text"
-                id="city"
-                name="city"
+                id="state"
+                name="state"
                 required
                 style={{
                   border:
                     isSubmitted && !inputValidity.city ? "1px solid red" : "",
                 }}>
                 <option value="">Select City</option>
-                {cities.map((city, index) => (
-                  <option key={index} value={city}>
-                    {city}
+                {states.map((state, index) => (
+                  <option key={index} value={state.name}>
+                    {state.name}
                   </option>
                 ))}
               </select>

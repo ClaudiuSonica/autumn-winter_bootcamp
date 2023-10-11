@@ -3,7 +3,7 @@ import "./Summary.scss";
 
 // eslint-disable-next-line react/prop-types
 const Summary = ({ formData }) => {
-  const { firstName, lastName, email, phone, address1, country, city } =
+  const { firstName, lastName, email, phone, address1, country, state } =
     formData;
 
   return (
@@ -18,7 +18,7 @@ const Summary = ({ formData }) => {
           <li>Address: {address1}</li>
           <li>Country: {country}</li>
           <li>State: none</li>
-          <li>City: {city}</li>
+          <li>City: {state}</li>
         </ul>
       </div>
     </div>

@@ -75,6 +75,8 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
       }
       const data = await response.json();
 
+      console.log(data.data.states)
+
       if (data && data.data && Array.isArray(data.data.states)) {
         setStates(data.data.states);
       } else {
@@ -253,6 +255,7 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
                 }}
                 id="country"
                 name="country"
+                placeholder="Select Country"
                 required
                 style={{
                   border:
@@ -276,7 +279,8 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
                 onChange={handleChange}
                 type="text"
                 id="city"
-                name="city">
+                name="city"
+                placeholder="Select State">
                 <option value="">Select State</option>
                 <option value="">No State Found</option>
               </select>
@@ -293,6 +297,7 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
                 type="text"
                 id="state"
                 name="state"
+                placeholder="Select City"
                 required
                 style={{
                   border:
@@ -301,7 +306,7 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
                 <option value="">Select City</option>
                 {states.map((state, index) => (
                   <option key={index} value={state.name}>
-                    {state.name}
+                    {state.name.replace(/ County$/, '')}
                   </option>
                 ))}
               </select>

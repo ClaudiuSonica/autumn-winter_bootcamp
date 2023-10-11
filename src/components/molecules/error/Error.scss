@@ -1,0 +1,16 @@
+@import "../../../sass/variables";
+
+.error {
+  font-size: 1.4rem;
+  color: $red;
+  margin-top: 3.5rem;
+  
+  p {
+    margin-bottom: .6rem;
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 2rem;
+  }
+}

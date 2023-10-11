@@ -123,10 +123,18 @@ form {
     gap: 1.8rem;
   }
 
-  & .form__btn {
-    margin-top: 8.2rem;
-    margin-bottom: 16.7rem;
-    justify-self: flex-end;
-    align-self: flex-end;
+  
+
+  & .bottom__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+
+    & .form__btn {
+      margin-top: 8.2rem;
+      margin-bottom: 16.7rem;
+      
+    }
   }
 }

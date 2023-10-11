@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+
 import Button from "../../atoms/button/Button";
+import Error from "../../molecules/error/Error";
 import "./Form.scss";
 
 const Form = ({ formData, handleChange }) => {
@@ -15,15 +18,47 @@ const Form = ({ formData, handleChange }) => {
     city,
   } = formData;
 
+  const [inputValidity, setInputValidity] = useState({
+    firstName: true,
+    lastName: true,
+    email: true,
+    phone: true,
+    address1: true,
+    country: true,
+    city: true,
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    const errors = [];
+
+    for (const key in formData) {
+      if (e.target[key].hasAttribute("required") && !formData[key]) {
+        errors.push(`${key} is required`);
+        inputValidity[key] = false;
+      } else {
+        inputValidity[key] = true;
+      }
+    }
+
+    setInputValidity({ ...inputValidity });
+    setIsSubmitted(true);
+
+    if (errors.length === 0) {
+      
+      console.log("Form submitted:", formData);
+    } else {
+      
+      setFormErrors(errors);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <h2 className="form__title">Application Form</h2>
         <div className="form__contact">
           <h3 className="form__subtitle">Contact Information</h3>
@@ -40,6 +75,12 @@ const Form = ({ formData, handleChange }) => {
                 name="firstName"
                 placeholder="First Name"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.firstName
+                      ? "1px solid red"
+                      : "",
+                }}
               />
             </div>
             <div className="row">
@@ -54,6 +95,10 @@ const Form = ({ formData, handleChange }) => {
                 name="phone"
                 placeholder="+40 712 345 678"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.phone ? "1px solid red" : "",
+                }}
               />
             </div>
           </div>
@@ -70,6 +115,12 @@ const Form = ({ formData, handleChange }) => {
                 name="lastName"
                 placeholder="Last Name"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.lastName
+                      ? "1px solid red"
+                      : "",
+                }}
               />
             </div>
             <div className="row">
@@ -84,6 +135,10 @@ const Form = ({ formData, handleChange }) => {
                 name="email"
                 placeholder="jondoe@email.com"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.email ? "1px solid red" : "",
+                }}
               />
             </div>
           </div>
@@ -102,6 +157,10 @@ const Form = ({ formData, handleChange }) => {
               name="address1"
               placeholder="Street name & number"
               required
+              style={{
+                border:
+                  isSubmitted && !inputValidity.address1 ? "1px solid red" : "",
+              }}
             />
           </div>
           <div className="row">
@@ -128,6 +187,10 @@ const Form = ({ formData, handleChange }) => {
                 name="country"
                 placeholder="Country"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.country ? "1px solid red" : "",
+                }}
               />
             </div>
             <div className="row">
@@ -153,12 +216,19 @@ const Form = ({ formData, handleChange }) => {
                 name="city"
                 placeholder="City"
                 required
+                style={{
+                  border:
+                    isSubmitted && !inputValidity.city ? "1px solid red" : "",
+                }}
               />
             </div>
           </div>
-          <Button type={"submit"} className={"form__btn"}>
-            Join Us
-          </Button>
+          <div className="bottom__form">
+          {formErrors.length > 0 && <Error errors={formErrors} />}
+            <Button type={"submit"} className={"form__btn"}>
+              Join Us
+            </Button>
+          </div>
         </div>
       </form>
     </>

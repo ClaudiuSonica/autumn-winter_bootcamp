@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../../atoms/button/Button";
 import Error from "../../molecules/error/Error";
 import "./Form.scss";
-import { useNavigate } from "react-router-dom";
 
 const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
   const {
@@ -30,6 +30,63 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
   });
 
   const [formErrors, setFormErrors] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch(
+          "https://countriesnow.space/api/v0.1/countries"
+        );
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        if (data && data.data && Array.isArray(data.data)) {
+          setCountries(data.data.map((country) => country.country));
+          console.log(data.data);
+        } else {
+          console.error("Invalid API response format:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+    fetchCountries();
+  }, []);
+
+  const fetchCities = async (selectedCountry) => {
+    try {
+      const requestOptions = {
+        method: "POST",
+        body: JSON.stringify({ country: selectedCountry }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(
+        "https://countriesnow.space/api/v0.1/countries/cities",
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const data = await response.json();
+
+      if (data && Array.isArray(data.data)) {
+        setCities(data.data);
+      } else {
+        console.log("Invalid API response format for cities:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+    }
+  };
+
+  const handleCountryChange = (selectedCountry) => {
+    fetchCities(selectedCountry);
+  };
 
   const navigate = useNavigate();
 
@@ -180,21 +237,29 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
               <label htmlFor="country">
                 Country<span>*</span>
               </label>
-              <input
+              <select
                 value={country}
-                onChange={handleChange}
-                type="text"
+                onChange={(e) => {
+                  handleChange(e);
+                  handleCountryChange(e.target.value);
+                }}
                 id="country"
                 name="country"
-                placeholder="Country"
                 required
                 style={{
                   border:
                     isSubmitted && !inputValidity.country
                       ? "1px solid red"
                       : "",
-                }}
-              />
+                }}>
+                <option value="">Select Country</option>
+                {countries &&
+                  countries.map((country, index) => (
+                    <option key={index} value={country}>
+                      {country}
+                    </option>
+                  ))}
+              </select>
             </div>
             <div className="row">
               <label htmlFor="state">State</label>
@@ -211,19 +276,24 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
               <label htmlFor="city">
                 City<span>*</span>
               </label>
-              <input
+              <select
                 value={city}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 type="text"
                 id="city"
                 name="city"
-                placeholder="City"
                 required
                 style={{
                   border:
                     isSubmitted && !inputValidity.city ? "1px solid red" : "",
-                }}
-              />
+                }}>
+                <option value="">Select City</option>
+                {cities.map((city, index) => (
+                  <option key={index} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="bottom__form">

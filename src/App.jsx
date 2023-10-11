@@ -43,35 +43,20 @@ const App = () => {
             element={
               <ApplicationForm
                 formData={formData}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e)}
                 isSubmitted={isSubmitted}
                 setIsSubmitted={setIsSubmitted}
               />
             }
           />
-          {isSubmitted ? (
-            <Route
-              path="success"
-              element={
-                <SuccessForm>
-                  <Message formData={formData} />
-                </SuccessForm>
-              }
-            />
-          ) : (
-            <Route
-              path="form"
-              element={
-                <ApplicationForm
-                  formData={formData}
-                  handleChange={handleChange}
-                  isSubmitted={isSubmitted}
-                  setIsSubmitted={setIsSubmitted}
-                />
-              }
-            />
-          )}
-
+          <Route
+            path="success"
+            element={
+              <SuccessForm>
+                {isSubmitted && <Message formData={formData} />}
+              </SuccessForm>
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

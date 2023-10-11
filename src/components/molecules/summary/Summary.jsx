@@ -1,23 +1,28 @@
+/* eslint-disable react/prop-types */
 import "./Summary.scss";
 
-const Summary = () => {
+// eslint-disable-next-line react/prop-types
+const Summary = ({ formData }) => {
+  const { firstName, lastName, email, phone, address1, country, city } =
+    formData;
+
   return (
     <div className="summary">
       <h3>Submission Summary:</h3>
       <div className="summary__list">
         <ul>
-          <li>First Name: John</li>
-          <li>Last Name: Doe</li>
-          <li>Phone number: +40712345678</li>
-          <li>Email: johndoe@email.com</li>
-          <li>Address: Address</li>
-          <li>Country: Romania</li>
+          <li>First Name: {firstName}</li>
+          <li>Last Name: {lastName}</li>
+          <li>Phone number: {phone}</li>
+          <li>Email: {email}</li>
+          <li>Address: {address1}</li>
+          <li>Country: {country}</li>
           <li>State: none</li>
-          <li>City: Cluj</li>
+          <li>City: {city}</li>
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default Summary;

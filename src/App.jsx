@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
 
 import Header from "./components/molecules/header/Header";
 import Footer from "./components/molecules/footer/Footer";
@@ -6,10 +7,9 @@ import SuccessForm from "./components/pages/SuccessForm";
 import Homepage from "./components/pages/Homepage";
 import PageNotFound from "./components/pages/PageNotFound";
 import ApplicationForm from "./components/pages/ApplicationForm";
-import { useState } from "react";
+import Message from "./components/molecules/message/Message";
 
 const App = () => {
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,8 +27,8 @@ const App = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   return (
     <>
@@ -36,8 +36,23 @@ const App = () => {
         <Header />
         <Routes>
           <Route index element={<Homepage />} />
-          <Route path="form" element={<ApplicationForm formData={formData} handleChange={handleChange} />} />
-          <Route path="success" element={<SuccessForm />} />
+          <Route
+            path="form"
+            element={
+              <ApplicationForm
+                formData={formData}
+                handleChange={handleChange}
+              />
+            }
+          />
+          <Route
+            path="success"
+            element={
+              <SuccessForm>
+                <Message formData={formData} />
+              </SuccessForm>
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

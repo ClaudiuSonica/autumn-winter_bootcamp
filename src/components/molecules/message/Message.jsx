@@ -2,12 +2,12 @@
 import Summary from "../summary/Summary";
 import "./Message.scss";
 
-const Message = () => {
+const Message = ({formData}) => {
   return (
     <div className="message">
       <p>Excellent!</p>
       <p>See you in November 2023!</p>
-      <Summary />
+      <Summary formData={formData} />
     </div>
   );
 };

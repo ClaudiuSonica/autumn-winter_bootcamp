@@ -1,9 +1,9 @@
-import Message from "../molecules/message/Message"
+/* eslint-disable react/prop-types */
 
-const SuccessForm = () => {
+const SuccessForm = ({children}) => {
   return (
     <>
-      <Message />
+      {children}
     </>
   )
 }

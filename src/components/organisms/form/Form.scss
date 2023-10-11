@@ -20,18 +20,18 @@ form {
     border: 1px solid $prussian-blue;
     width: 100%;
     height: 2.4rem;
-    text-indent: .8rem;
+    text-indent: 0.8rem;
     font-size: 1.6rem;
     font-weight: $font-weight-regular;
     color: $prussian-blue;
     box-shadow: 5px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
     &::placeholder {
-      color: #E2E2E2;
+      color: #e2e2e2;
       font-size: 1.2rem;
       font-weight: $font-weight-regular;
-      text-indent: .8rem;
-      letter-spacing: .1rem;
+      text-indent: 0.8rem;
+      letter-spacing: 0.1rem;
     }
   }
 
@@ -39,7 +39,7 @@ form {
     border: 1px solid $prussian-blue;
     width: 100%;
     height: 2.4rem;
-    text-indent: .8rem;
+    text-indent: 0.8rem;
     font-size: 1.6rem;
     font-weight: $font-weight-regular;
     color: $prussian-blue;
@@ -78,14 +78,13 @@ form {
       gap: 2.8rem;
     }
 
-    
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     gap: 1.8rem;
   }
-  
+
   .row {
     display: flex;
     justify-content: flex-start;
@@ -111,9 +110,9 @@ form {
       & .row:is(:first-child) {
         margin-right: 7.2rem;
       }
-    
-      
-      input, select {
+
+      input,
+      select {
         width: 23.3rem;
       }
     }
@@ -132,14 +131,12 @@ form {
     margin-top: 1.9rem;
     gap: 1.8rem;
   }
-
-  
-
   & .bottom__form {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    width: 100%;
+    // width: 76%;
+    width: 81rem;
 
     & .form__btn {
       margin-top: 8.2rem;

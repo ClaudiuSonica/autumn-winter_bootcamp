@@ -18,7 +18,7 @@ const Summary = ({ formData }) => {
           <li>Address: {address1}</li>
           <li>Country: {country}</li>
           <li>State: none</li>
-          <li>City: {state}</li>
+          <li>City: {state.replace(/ County$/, "")}</li>
         </ul>
       </div>
     </div>

@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/button/Button";
 import Error from "../../molecules/error/Error";
 import "./Form.scss";
+import FormContainer from "../../molecules/formContainer/FormContainer";
+import ContactInfo from "../../molecules/contactInfo/ContactInfo";
+import Address from "../../molecules/addressInfo/AddressInfo";
 
 const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
   const {
@@ -75,8 +78,6 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
       }
       const data = await response.json();
 
-      console.log(data.data.states)
-
       if (data && data.data && Array.isArray(data.data.states)) {
         setStates(data.data.states);
       } else {
@@ -126,200 +127,36 @@ const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} noValidate>
-        <h2 className="form__title">Application Form</h2>
-        <div className="form__contact">
-          <h3 className="form__subtitle">Contact Information</h3>
-          <div className="col">
-            <div className="row">
-              <label htmlFor="firstName">
-                First Name<span>*</span>
-              </label>
-              <input
-                value={firstName}
-                onChange={handleChange}
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.firstName
-                      ? "1px solid red"
-                      : "",
-                }}
-              />
-            </div>
-            <div className="row">
-              <label htmlFor="phone">
-                Phone Number<span>*</span>
-              </label>
-              <input
-                value={phone}
-                onChange={handleChange}
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="+40 712 345 678"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.phone ? "1px solid red" : "",
-                }}
-              />
-            </div>
-          </div>
-          <div className="col">
-            <div className="row">
-              <label htmlFor="lastName">
-                Last Name<span>*</span>
-              </label>
-              <input
-                value={lastName}
-                onChange={handleChange}
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.lastName
-                      ? "1px solid red"
-                      : "",
-                }}
-              />
-            </div>
-            <div className="row">
-              <label htmlFor="email">
-                Email address<span>*</span>
-              </label>
-              <input
-                value={email}
-                onChange={handleChange}
-                type="email"
-                id="email"
-                name="email"
-                placeholder="jondoe@email.com"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.email ? "1px solid red" : "",
-                }}
-              />
-            </div>
-          </div>
+      <FormContainer handleSubmit={handleSubmit}>
+        <ContactInfo
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          phone={phone}
+          handleChange={handleChange}
+          isSubmitted={isSubmitted}
+          inputValidity={inputValidity}
+        />
+        <Address
+          address1={address1}
+          address2={address2}
+          country={country}
+          city={city}
+          state={state}
+          handleChange={handleChange}
+          handleCountryChange={handleCountryChange}
+          isSubmitted={isSubmitted}
+          inputValidity={inputValidity}
+          countries={countries}
+          states={states}
+        />
+        <div className="bottom__form">
+          {isSubmitted && <Error errors={formErrors} />}
+          <Button type={"submit"} className={"form__btn"}>
+            Join Us
+          </Button>
         </div>
-        <div className="form__address">
-          <h3 className="form__subtitle">Address</h3>
-          <div className="row">
-            <label htmlFor="address1">
-              Address Line 1<span>*</span>
-            </label>
-            <input
-              value={address1}
-              onChange={handleChange}
-              type="text"
-              id="address1"
-              name="address1"
-              placeholder="Street name & number"
-              required
-              style={{
-                border:
-                  isSubmitted && !inputValidity.address1 ? "1px solid red" : "",
-              }}
-            />
-          </div>
-          <div className="row">
-            <label htmlFor="address2">Address Line 2</label>
-            <input
-              value={address2}
-              onChange={handleChange}
-              type="text"
-              id="address2"
-              name="address2"
-              placeholder="Apartment, suite, etc."
-            />
-          </div>
-          <div className="row__location">
-            <div className="row">
-              <label htmlFor="country">
-                Country<span>*</span>
-              </label>
-              <select
-                value={country}
-                onChange={(e) => {
-                  handleChange(e);
-                  handleCountryChange(e.target.value);
-                }}
-                id="country"
-                name="country"
-                placeholder="Select Country"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.country
-                      ? "1px solid red"
-                      : "",
-                }}>
-                <option value="">Select Country</option>
-                {countries &&
-                  countries.map((country, index) => (
-                    <option key={index} value={country}>
-                      {country}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="row">
-              <label htmlFor="city">State</label>
-              <select
-                value={city}
-                onChange={handleChange}
-                type="text"
-                id="city"
-                name="city"
-                placeholder="Select State">
-                <option value="">Select State</option>
-                <option value="">No State Found</option>
-              </select>
-            </div>
-            <div className="row">
-              <label htmlFor="state">
-                City<span>*</span>
-              </label>
-              <select
-                value={state}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                type="text"
-                id="state"
-                name="state"
-                placeholder="Select City"
-                required
-                style={{
-                  border:
-                    isSubmitted && !inputValidity.city ? "1px solid red" : "",
-                }}>
-                <option value="">Select City</option>
-                {states.map((state, index) => (
-                  <option key={index} value={state.name}>
-                    {state.name.replace(/ County$/, '')}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="bottom__form">
-            {formErrors.length > 0 && <Error errors={formErrors} />}
-            <Button type={"submit"} className={"form__btn"}>
-              Join Us
-            </Button>
-          </div>
-        </div>
-      </form>
+      </FormContainer>
     </>
   );
 };

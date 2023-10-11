@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../atoms/button/Button";
 import ConstPage from "../../atoms/constPage/ConstPage";
 
@@ -26,7 +27,9 @@ const Const = () => {
         </h2>
         <span className="const__equal">=</span> <ConstPage />
       </div>
-      <Button>Join Us</Button>
+      <Link to="/form">
+        <Button>Join Us</Button>
+      </Link>
     </section>
   );
 };

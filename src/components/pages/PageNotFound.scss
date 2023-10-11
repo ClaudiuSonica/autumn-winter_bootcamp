@@ -1,0 +1,18 @@
+@import "../../sass/variables";
+
+.page__not__found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 74vh;
+  background: $athens-gray;
+  width: 76%;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 4.8rem;
+    font-weight: $font-weight-bold;
+    color: $prussian-blue;
+  }
+}

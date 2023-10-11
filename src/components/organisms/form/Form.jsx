@@ -2,9 +2,15 @@ import Button from "../../atoms/button/Button";
 import "./Form.scss";
 
 const Form = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  }
+
   return (
     <>
-      <form action="">
+      <form onSubmit={handleSubmit} >
       <h2 className="form__title">Application Form</h2>
         <div className="form__contact">
           <h3 className="form__subtitle">Contact Information</h3>

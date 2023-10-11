@@ -22,6 +22,8 @@ const App = () => {
     city: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -42,17 +44,34 @@ const App = () => {
               <ApplicationForm
                 formData={formData}
                 handleChange={handleChange}
+                isSubmitted={isSubmitted}
+                setIsSubmitted={setIsSubmitted}
               />
             }
           />
-          <Route
-            path="success"
-            element={
-              <SuccessForm>
-                <Message formData={formData} />
-              </SuccessForm>
-            }
-          />
+          {isSubmitted ? (
+            <Route
+              path="success"
+              element={
+                <SuccessForm>
+                  <Message formData={formData} />
+                </SuccessForm>
+              }
+            />
+          ) : (
+            <Route
+              path="form"
+              element={
+                <ApplicationForm
+                  formData={formData}
+                  handleChange={handleChange}
+                  isSubmitted={isSubmitted}
+                  setIsSubmitted={setIsSubmitted}
+                />
+              }
+            />
+          )}
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

@@ -4,8 +4,9 @@ import { useState } from "react";
 import Button from "../../atoms/button/Button";
 import Error from "../../molecules/error/Error";
 import "./Form.scss";
+import { useNavigate } from "react-router-dom";
 
-const Form = ({ formData, handleChange }) => {
+const Form = ({ formData, handleChange, isSubmitted, setIsSubmitted }) => {
   const {
     firstName,
     lastName,
@@ -28,8 +29,9 @@ const Form = ({ formData, handleChange }) => {
     city: true,
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,10 +50,9 @@ const Form = ({ formData, handleChange }) => {
     setIsSubmitted(true);
 
     if (errors.length === 0) {
-      
-      console.log("Form submitted:", formData);
+      setFormErrors([]);
+      navigate("/success");
     } else {
-      
       setFormErrors(errors);
     }
   };
@@ -189,7 +190,9 @@ const Form = ({ formData, handleChange }) => {
                 required
                 style={{
                   border:
-                    isSubmitted && !inputValidity.country ? "1px solid red" : "",
+                    isSubmitted && !inputValidity.country
+                      ? "1px solid red"
+                      : "",
                 }}
               />
             </div>
@@ -224,7 +227,7 @@ const Form = ({ formData, handleChange }) => {
             </div>
           </div>
           <div className="bottom__form">
-          {formErrors.length > 0 && <Error errors={formErrors} />}
+            {formErrors.length > 0 && <Error errors={formErrors} />}
             <Button type={"submit"} className={"form__btn"}>
               Join Us
             </Button>

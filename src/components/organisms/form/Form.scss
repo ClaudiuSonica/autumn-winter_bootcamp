@@ -92,7 +92,6 @@ form {
       flex-direction: row;
       justify-content: center;
       align-items: flex-start;
-      // gap: 7.2rem;
 
       & .row:is(:last-child) {
         margin-left: 4.5rem;
@@ -127,14 +126,15 @@ form {
 
   & .bottom__form {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     width: 100%;
 
     & .form__btn {
       margin-top: 8.2rem;
       margin-bottom: 16.7rem;
-      
+      justify-self: flex-end;
+      align-self: flex-end;
     }
   }
 }
